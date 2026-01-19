@@ -1,0 +1,10 @@
+image:
+  repository: kishanmc/portfolio-app
+  tag: v1
+
+service:
+  port: 3000
+
+ingress:
+  enabled: true
+  host: portfolio.local

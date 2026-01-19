@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kishan MC | About</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/skills">Skills</a>
+    <a href="/projects">Projects</a>
+    <a href="/contact">Contact</a>
+</nav>
+
+<h1>About Me</h1>
+<h3>My Journey, Mindset & Leadership</h3>
+
+<section>
+    <h2>Who I Am</h2>
+    <p id="summary"></p>
+</section>
+
+<section>
+    <h2>Education</h2>
+    <p id="education"></p>
+</section>
+
+<section>
+    <h2>Professional Experience</h2>
+    <div id="experience"></div>
+</section>
+
+<section>
+    <h2>Leadership & Community</h2>
+    <ul id="leadership"></ul>
+</section>
+
+<section>
+    <h2>Core Values</h2>
+    <ul>
+        <li>Hard Work & Smart Work</li>
+        <li>Planning & Time Management</li>
+        <li>Learning from Mistakes</li>
+        <li>Respect for Everyone</li>
+    </ul>
+</section>
+
+<script>
+fetch('/api/resume')
+    .then(res => res.json())
+    .then(data => {
+
+        document.getElementById("summary").innerText = data.summary;
+
+        document.getElementById("education").innerText =
+            `${data.education.degree} - ${data.education.college} (${data.education.duration})`;
+
+        data.experience.forEach(exp => {
+            let div = document.createElement("div");
+            div.innerHTML = `
+                <h3>${exp.role} – ${exp.company}</h3>
+                <p>${exp.period}</p>
+                <ul>
+                    ${exp.work.map(w => `<li>${w}</li>`).join("")}
+                </ul>
+            `;
+            document.getElementById("experience").appendChild(div);
+        });
+
+        data.leadership.forEach(l => {
+            let li = document.createElement("li");
+            li.innerText = l;
+            document.getElementById("leadership").appendChild(li);
+        });
+    });
+</script>
+
+</body>
+</html>

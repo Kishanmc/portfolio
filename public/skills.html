@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kishan MC | Skills</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/skills">Skills</a>
+    <a href="/projects">Projects</a>
+    <a href="/contact">Contact</a>
+</nav>
+
+<h1>Skills</h1>
+<h3>Technologies & Tools I Work With</h3>
+
+<section>
+    <h2>Frontend</h2>
+    <div class="grid" id="frontend"></div>
+</section>
+
+<section>
+    <h2>Backend</h2>
+    <div class="grid" id="backend"></div>
+</section>
+
+<section>
+    <h2>DevOps & Cloud</h2>
+    <div class="grid" id="devops"></div>
+</section>
+
+<section>
+    <h2>Security</h2>
+    <div class="grid" id="security"></div>
+</section>
+
+<section>
+    <h2>Programming Languages</h2>
+    <div class="grid" id="languages"></div>
+</section>
+
+<script>
+fetch('/api/resume')
+    .then(res => res.json())
+    .then(data => {
+        data.skills.frontend.forEach(s => {
+            let e = document.createElement("span");
+            e.innerText = s;
+            document.getElementById("frontend").appendChild(e);
+        });
+
+        data.skills.backend.forEach(s => {
+            let e = document.createElement("span");
+            e.innerText = s;
+            document.getElementById("backend").appendChild(e);
+        });
+
+        data.skills.devops.forEach(s => {
+            let e = document.createElement("span");
+            e.innerText = s;
+            document.getElementById("devops").appendChild(e);
+        });
+
+        data.skills.security.forEach(s => {
+            let e = document.createElement("span");
+            e.innerText = s;
+            document.getElementById("security").appendChild(e);
+        });
+
+        data.skills.languages.forEach(s => {
+            let e = document.createElement("span");
+            e.innerText = s;
+            document.getElementById("languages").appendChild(e);
+        });
+    });
+</script>
+
+</body>
+</html>

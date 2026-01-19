@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kishan MC | Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/skills">Skills</a>
+    <a href="/projects">Projects</a>
+    <a href="/contact">Contact</a>
+</nav>
+
+<h1>Contact</h1>
+<h3>Let’s Build Something Impactful</h3>
+
+<section>
+    <h2>Reach Me</h2>
+    <p id="email"></p>
+    <p id="phone"></p>
+    <p id="location"></p>
+</section>
+
+<section>
+    <h2>Find Me Online</h2>
+    <div class="grid">
+        <span id="github"></span>
+        <span id="linkedin"></span>
+    </div>
+</section>
+
+<section>
+    <h2>Why Connect?</h2>
+    <ul>
+        <li>Open to Full Stack & Backend Roles</li>
+        <li>Hackathons & Startup Collaborations</li>
+        <li>Cloud, DevOps & System Design Discussions</li>
+    </ul>
+</section>
+
+<script>
+fetch('/api/resume')
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("email").innerText = "Email: " + data.personal.email;
+        document.getElementById("phone").innerText = "Phone: " + data.personal.phone;
+        document.getElementById("location").innerText = "Location: " + data.personal.location;
+
+        document.getElementById("github").innerText = "GitHub: " + data.personal.github;
+        document.getElementById("linkedin").innerText = "LinkedIn: " + data.personal.linkedin;
+    });
+</script>
+
+</body>
+</html>

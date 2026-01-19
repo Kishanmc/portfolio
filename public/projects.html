@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kishan MC | Projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/skills">Skills</a>
+    <a href="/projects">Projects</a>
+    <a href="/contact">Contact</a>
+</nav>
+
+<h1>Projects</h1>
+<h3>Real-World Applications & Hackathon Wins</h3>
+
+<section>
+    <div id="projects"></div>
+</section>
+
+<script>
+fetch('/api/resume')
+    .then(res => res.json())
+    .then(data => {
+        data.projects.forEach(p => {
+            let card = document.createElement("div");
+            card.innerHTML = `
+                <h2>${p.name}</h2>
+                <p>${p.description}</p>
+                ${p.achievement ? `<p><b>Achievement:</b> ${p.achievement}</p>` : ""}
+                <div class="grid">
+                    ${p.tech.map(t => `<span>${t}</span>`).join("")}
+                </div>
+            `;
+            document.getElementById("projects").appendChild(card);
+        });
+    });
+</script>
+
+</body>
+</html>
